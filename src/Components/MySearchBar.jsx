@@ -28,7 +28,7 @@ const MySearchBar = () => {
       .then((resp) => {
         navigate(`/Home/Weather/${resp[0].lat}/${resp[0].lon}`)
         setSearchValue("")
-        console.log(searchValue)
+
         // navigate(`/Home/Weather/${lat}/${lon}`)
       })
       .catch((err) => console.log(err))
