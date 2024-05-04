@@ -6,7 +6,7 @@ const MyWeatherCard = (props) => {
   const param = useParams()
   let lat = param.lat
   let lon = param.lon
-  const URL2 = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=98b90f764054011c99e9fe9e13e49d01`
+  const URL2 = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=98b90f764054011c99e9fe9e13e49d01`
   const [generateCity, setGenerateCity] = useState(null)
   const [today, setToday] = useState("")
   console.log(today)
@@ -53,7 +53,7 @@ const MyWeatherCard = (props) => {
                   src={`https://openweathermap.org/img/wn/${generateCity.weather[0].icon}@2x.png`}
                 />
                 <Card.Text className="fs-1">
-                  {(generateCity.main.temp - 273.15).toFixed()}°C
+                  {generateCity.main.temp.toFixed(1)}°C
                 </Card.Text>
                 <Card.Text className="fs-3">
                   {generateCity.weather[0].main}
@@ -84,7 +84,7 @@ const MyWeatherCard = (props) => {
                   </Card.Text>
                   <Card.Text className="m-0">Feeling</Card.Text>
                   <Card.Text className="m-0">
-                    {(generateCity.main.feels_like - 273.15).toFixed(1)}
+                    {generateCity.main.feels_like.toFixed(1)}
                   </Card.Text>
                 </Card.Body>
               </Card.Body>

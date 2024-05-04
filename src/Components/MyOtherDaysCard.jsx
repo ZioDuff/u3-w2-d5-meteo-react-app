@@ -7,9 +7,10 @@ const MyOtherDaysCard = () => {
   let lat = param.lat
   let lon = param.lon
   const [days, setDays] = useState(null)
+  // const filterDays= days.list.filter(())
   const fetchOtherDays = () => {
     fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=98b90f764054011c99e9fe9e13e49d01`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=98b90f764054011c99e9fe9e13e49d01`
     )
       .then((response) => {
         if (response.ok) {
@@ -31,11 +32,11 @@ const MyOtherDaysCard = () => {
   }, [])
 
   return (
-    days && (
-      <Container fluid>
-        <h1>Nei prossimi giorni</h1>
-        <Row>
-          {days.list.slice(0, 5).map((obj) => {
+    <Container fluid>
+      <h1>Nei prossimi giorni</h1>
+      <Row>
+        {days &&
+          days.list.map((obj) => {
             return (
               <Col key={obj.id}>
                 <Card>
@@ -44,9 +45,7 @@ const MyOtherDaysCard = () => {
                       <Card.Title>
                         {days.city.name},{days.city.country}
                       </Card.Title>
-                      <Card.Text>
-                        {(obj.main.temp - 273.15).toFixed()}°C
-                      </Card.Text>
+                      <Card.Text>{obj.main.temp}°C</Card.Text>
                       <Card.Text>{obj.dt_txt}</Card.Text>
                     </div>
                     <Card.Img
@@ -58,9 +57,8 @@ const MyOtherDaysCard = () => {
               </Col>
             )
           })}
-        </Row>
-      </Container>
-    )
+      </Row>
+    </Container>
   )
 }
 export default MyOtherDaysCard
