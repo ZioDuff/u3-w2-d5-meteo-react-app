@@ -3,7 +3,10 @@
 .logo {
   width: 70px;
 }
-
+.form:hover {
+  transform: scale(1.1);
+  box-shadow: -1px 3px 10px 0px #afaeae94;
+}
 .weather-card {
   background: rgb(2, 0, 36);
   background: linear-gradient(
